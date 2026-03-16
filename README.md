@@ -1,1 +1,2 @@
-Download the zip unzip it and read the README.md in the zip
+for setup run setup.sh to run run cmd.sh
+
