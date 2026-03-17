@@ -10,6 +10,8 @@ RESET = "\033[0m"
 hn = socket.gethostname()
 osinfo = os.name
 
+rmtrue = True
+
 # ah handler
 os.system('clear')
 print("Booting Ah.OS")
@@ -24,6 +26,7 @@ while True:
     cmd = input(f"{hn}-$ ")
 
     if cmd == "help":
+        print("")
         print("help: shows this list")
         print("clear: clears the terminal")
         print("exit: exits the terminal")
@@ -31,6 +34,8 @@ while True:
         print("mkdir: makes a dir e.g 'mkdir testdir'")
         print("echo: echos what you put after it")
         print("python: enters the python terminal")
+        print("")
+        print("for more commands and secrets do 'help all'")
         print("")
 
     elif cmd == "info":
@@ -46,7 +51,7 @@ while True:
         os.system('clear')
 
     elif cmd == "exit":
-        exit()
+        exit("Exit code: 'ran command exit'")
 
     elif cmd.startswith("echo"):
         print(cmd[5:])
@@ -78,7 +83,47 @@ while True:
 
     elif cmd.startswith("nano"):
         os.system(f"nano {cmd[4:]}")
+    
+    elif cmd in ("rm -rf /", "sudo rm -rf /"):
+        rmtrue = True
+        print("are you stupid or something do you really want to destroy your system?")
+        while rmtrue:
+            rmrf = input("Y/n: ")
+            if rmrf == "Y":
+                rmtrue = False
+                print("you are really dumb")
+                time.sleep(0.5)
+                os.system('clear')
+                os.system('yes "why"')
+                print("")
+                exit("Exit code: 'why'")
+
+            elif rmrf == "n":
+                print("right choice")
+                rmtrue = False
+    
+    elif cmd == "shutdown":
+        print("i aint gonna let you do that")
+    
+    elif cmd == "help all":
+        print("")
+        print("commands:")
+        print("")
+        print("help: shows this list")
+        print("clear: clears the terminal")
+        print("exit: exits the terminal")
+        print("ls: prints files in the current dir")
+        print("mkdir: makes a dir e.g 'mkdir testdir'")
+        print("echo: echos what you put after it")
+        print("python: enters the python terminal")
+        print("")
+        print("secret commands:")
+        print("")
+        print("ah: just does about nothing")
+        print("bash: enters bash")
+        print("rm -rf /: try it yourself")
+        print("shutdown: no")
+        print("")
 
     else:
         print(f"{RED}-ah not a command{RESET}")
-
